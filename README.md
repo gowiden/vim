@@ -1,2 +1,37 @@
-# vimrc-simple
+vimrc-simple
+==============
+
 .vimrc, simple configures for server, without plugins.
+
+# Introduction
+
+Just remove all plugins, keep basic config.
+
+# Screenshot
+
+# Install
+
+#### 1. backup your old .vimrc if it is necessary
+
+```
+cp ~/.vimrc ~/.vimrc_bak
+```
+
+#### 2. just get the file
+
+recommend
+```
+curl https://raw.githubusercontent.com/gowiden/vimrc-simple/master/vimrc > ~/.vimrc
+```
+or  use git
+
+```
+git clone https://github.com/gowiden/vimrc-simple.git
+ln -s vim-for-server/vimrc ~/.vimrc
+```
+
+#### 3. Done, enjoy it
+
+# Donation
+
+You can Buy me a coffee:)  [link](https://about.me/vimer)
