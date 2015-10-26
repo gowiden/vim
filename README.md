@@ -27,7 +27,7 @@ or  use git
 
 ```
 git clone https://github.com/gowiden/vimrc-simple.git
-ln -s vim-for-server/vimrc ~/.vimrc
+ln -s vimrc-simple/vimrc ~/.vimrc
 ```
 
 #### 3. Done, enjoy it
