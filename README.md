@@ -1,7 +1,7 @@
-vimrc-simple
+vimrc-Todd
 ==============
 
-.vimrc, simple configures, without plugins.
+.vimrc,simple configures,without plugins.
 
 # Introduction
 
@@ -19,15 +19,15 @@ cp ~/.vimrc ~/.vimrc_bak
 
 recommend
 ```
-curl https://raw.githubusercontent.com/gowiden/vimrc-simple/master/vimrc > ~/.vimrc
+curl https://raw.githubusercontent.com/gowiden/vimrc-Todd/master/vimrc > ~/.vimrc
 ```
 or  use git
 
 ```
-git clone https://github.com/gowiden/vimrc-simple.git
-ln -s vimrc-simple/vimrc ~/.vimrc
+git clone https://github.com/gowiden/vimrc-Todd.git
+ln -s vimrc-Todd/vimrc ~/.vimrc
 ```
 
 #### 3. Done, enjoy it
 
-about me [link](https://about.me/vimer)
+##### about me [link](https://about.me/vimer)
