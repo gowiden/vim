@@ -32,6 +32,4 @@ ln -s vimrc-simple/vimrc ~/.vimrc
 
 #### 3. Done, enjoy it
 
-# Donation
-
-You can Buy me a coffee:)  [link](https://about.me/vimer)
+about me [link](https://about.me/vimer)
