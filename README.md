@@ -30,4 +30,6 @@ ln -s vimrc-Todd/vimrc ~/.vimrc
 
 #### 3. Done, enjoy it
 
-##### about me [link](https://about.me/vimer)
+
+
+### about me [link](https://about.me/vimer)
