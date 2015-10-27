@@ -7,8 +7,6 @@ vimrc-simple
 
 Just remove all plugins, keep basic config.
 
-# Screenshot
-
 # Install
 
 #### 1. backup your old .vimrc if it is necessary
