@@ -30,7 +30,7 @@ set noswapfile
 
 set novisualbell       " turn off visual bell
 set noerrorbells       " don't beep
-set visualbell t_vb=   " turn off error beep/flash
+"set visualbell t_vb=   " turn off error beep/flash
 set t_vb=
 set tm=500
 
