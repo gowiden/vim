@@ -1,7 +1,7 @@
 vimrc-Todd
 ==============
 
-.vimrc,simple configures,without plugins.
+.vimrc, simple configures, without plugins.
 
 # Introduction
 
