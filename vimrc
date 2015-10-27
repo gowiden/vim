@@ -1,280 +1,205 @@
-"==========================================
 " Author:  Todd <https://about.me/vimer>
 " Last_modify: 2015-10-26
-" Desc: simple vim config for server, without any plugins.
-"==========================================
-" General
-if has("win32") || has("win32unix")
-    let g:OS#name = "win"
-    let g:OS#win = 1
-    let g:OS#mac = 0
-    let g:OS#unix = 0
-elseif has("mac")
-    let g:OS#name = "mac"
-    let g:OS#mac = 1
-    let g:OS#win = 0
-    let g:OS#unix = 0
-elseif has("unix")
-    let g:OS#name = "unix"
-    let g:OS#unix = 1
-    let g:OS#win = 0
-    let g:OS#mac = 0
-endif
+" Desc: simple vim config, without any plugins.
 
-if has("gui_running")
-    let g:OS#gui = 1
-else
-    let g:OS#gui = 0
-endif
+" leader
+let mapleader = ','
+let g:mapleader = ','
 
-if g:OS#win
-    source $VIMRUNTIME/vimrc_example.vim
-    source $VIMRUNTIME/mswin.vim
-    behave mswin
-endif
-
-" 禁止vim以兼容vi的模式运行
-set nocompatible
-
-" 启用插件和缩进
-filetype plugin on
-filetype indent on
-filetype plugin indent on
-syntax enable
-
-" 语法高亮
+" syntax
 syntax on
-filetype on
 
-" 配色方案
-colorscheme desert
-
-set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
-"set guifont=Fixedsys:h12:cGB2312
-
-" 历史操作列表条数
+" history : how many lines of history VIM has to remember
 set history=500
 
-" 设定自动读取文件
-set autoread
+" filetype
+filetype on
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
 
+" base
+set nocompatible       " don't bother with vi compatibility
+set autoread           " reload files when changed on disk, i.e. via `git checkout`
+set shortmess=atI
 set cm=blowfish
-
-"set t_ti= t_te=
-
-" swrap file & auto backup
-"if g:OS#win
-"    set directory=$VIM\tmp
-"else
-"    set directory=~/.tmp
-"endif
-
-" 关闭自动备份
-set nobackup
-
-" 不使用交换文件
+set magic              " For regular expressions turn magic on
+set title              " change the terminal's title
+set nobackup           " do not keep a backup file
 set noswapfile
 
-" highlight CurrentLine guibg=darkgrey guifg=white
-" au! Cursorhold * exe 'match CurrentLine /\%' . line('.') . 'l.*/'
-" set ut=100
-"set cursorcolumn
-set cursorline
-set gcr=a:block-blinkon0
-
-" change the terminal's title
-set title
-
-" 禁用错误提示
-set noerrorbells
-set novisualbell
+set novisualbell       " turn off visual bell
+set noerrorbells       " don't beep
+set visualbell t_vb=   " turn off error beep/flash
 set t_vb=
 set tm=500
 
-" 显示行号
-set number
+" show location
+"set cursorcolumn
+set cursorline
 
-" 打开状态栏标尺
-set ruler
+" movement
+set scrolloff=3        " keep 3 lines when scrolling
 
-" 显示用户当前的操作
-set showcmd
-
-" 高亮搜索内容
-set hls
-
-" 运行宏时不重绘屏幕
-set lz
-
-" fixed
-set scrolloff=3
-set shortmess=atI
-" gui-win32-maximized
 "au GUIEnter * simalt ~x
-set columns=90
-set lines=30
+set lines=30 columns=90
 
-" 关闭鼠标
-set mouse-=a
-
-" 不用alt键访问菜单
-set winaltkeys=no
-
-" 禁用断行
+" show
+set ruler              " show the current row and column
+set number             " show line numbers
+set wrap
+set showcmd            " display incomplete commands
+set showmode           " display current modes
+set showmatch          " jump to matches when entering parentheses
+set matchtime=2        " tenths of a second to show the matching parenthesis
 set nolinebreak
-
-" 对不明宽度字符的处理方式
 set ambiwidth=double
 
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
+" search
+set hlsearch           " highlight searches
+set incsearch          " do incremental searching, search as you type
+set ignorecase         " ignore case when searching
+set smartcase          " no ignorecase if Uppercase char present
 
-" NOTE: this setting will change text source
-set textwidth=80
-set fo+=m
-set clipboard+=unnamed
-
-" F11 maximize window
-"if has("gui_running") && has("win32")
-"    map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-"endif
-
-" Search
-set incsearch
-set ignorecase
-" ignore case if search pattern is all lowercase, case-sensitive otherwise
-set smartcase
-
-vnoremap  *  y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
-vnoremap  #  y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
-
-set foldenable
-set foldmethod=syntax
-set foldmethod=indent
-set foldlevel=6
-set foldcolumn=0
-
-" Tabs
-set softtabstop=4
-" replace tab to whitespace
-set expandtab
-" show tab indent word space
-set tabstop=4
-" tab length
-set shiftwidth=4
-" break full word
-set linebreak
-" new line indent same this line
-set autoindent
-" Smart indent
-set smartindent
+" tab
+set expandtab          " expand tabs to spaces
+set smarttab
+set shiftround
+set linebreak          " break full word
 "set splitright
 "set splitbelow
 
-" file encode
-" 设置vim内部编码
-set encoding=utf-8
-set termencoding=utf-8
-set helplang=cn
-"language message zh_CN.UTF-8
-"set langmenu=zh_CN.UTF-8
-"set enc=2byte-gb18030
-"
-" 设置文件编码
-set fileencoding=utf-8
+" indent
+set autoindent smartindent shiftround
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4      " insert mode tab and backspace use 4 spaces
 
-" 设置文件编码集 :help encoding-values
-"set fileencodings=ucs-bom,utf-8,chinese,gbk,gb18030,taiwan,japan,korea,latin-1
+" NOT SUPPORT
+" fold
+set foldenable
+set foldmethod=syntax
+set foldmethod=indent
+set foldlevel=99
+set foldcolumn=0
+let g:FoldMethod = 0
+map <leader>zz :call ToggleFold()<cr>
+fun! ToggleFold()
+    if g:FoldMethod == 0
+        exe "normal! zM"
+        let g:FoldMethod = 1
+    else
+        exe "normal! zR"
+        let g:FoldMethod = 0
+    endif
+endfun
+
+" font
+set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
+"set guifont=Fixedsys:h12:cGB2312
+
+" encoding
+set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set termencoding=utf-8
+set ffs=unix,dos,mac
 set formatoptions+=m
 set formatoptions+=B
 
-" ffs=dos,unix
-set fileformat=unix
-set fileformats=dos,unix,mac
+" select & complete
+set selection=inclusive
+set selectmode=mouse,key
 
-if has("persistent_undo")
-    set undofile
-    set undolevels=1000
+set completeopt=longest,menu
+set wildmenu                    " show a navigable menu for tab completion"
+set wildmode=longest,list,full
+set wildignore=*.o,*~,*.pyc,*.class
 
-    if g:OS#win
-        set undodir=$VIM\undodir
-        au BufWritePre undodir/* setlocal noundofile
-    else
-        set undodir=~/.undodir
-        au BufWritePre ~/.undodir/* setlocal noundofile
-    endif
+" others
+set backspace=indent,eol,start  " make that backspace key work the way it should
+set whichwrap+=<,>,h,l
+
+" if this not work ,make sure .viminfo is writable for you
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" @see http://liyanrui.is-programmer.com/articles/1791/gvim-menu-and-toolbar-toggle.html
-if g:OS#gui
-" 去掉菜单栏
-    set guioptions-=m
-" 去掉工具栏
-    set guioptions-=T
-" 去掉右侧滚动条
-    set guioptions-=r
-    set guioptions-=L
-    map <silent> <F2> :if &guioptions =~# 'T' <Bar>
-            \set guioptions-=T <Bar>
-            \set guioptions-=m <bar>
-        \else <Bar>
-            \set guioptions+=T <Bar>
-            \set guioptions+=m <Bar>
-        \endif<CR>
-endif
+" NOT SUPPORT
+" Enable basic mouse behavior such as resizing buffers.
+set mouse=a
 
-if g:OS#gui
-    set autochdir
-    set colorcolumn=81
-    hi colorcolumn guibg=#444444
-    "syn match out80 /\%80v./ containedin=ALL
-    "hi out80 guifg=#333333 guibg=#ffffff
-endif
+" ============================ theme and status line ============================
 
-" Vimrc Auto
-"autocmd! bufwritepost _vimrc source %
-autocmd! bufwritepost .vimrc source %
+" theme
+set background=dark
 
-"if g:OS#win
-"    hi cursorline gui=underline guibg=NONE cterm=underline
-"endif
+colorscheme desert
 
-" Show tab number in your tab line
-" @see http://vim.wikia.com/wiki/Show_tab_number_in_your_tab_line
-" :h tabline
-"if g:OS#gui
-    " TODO: for MacVim.
-    "set guitablabel=%N.%t
-"endif
+"Toggle Menu and Toolbar
+"@see http://liyanrui.is-programmer.com/articles/1791/gvim-menu-and-toolbar-toggle.html
+set guioptions-=m
+set guioptions-=T
+map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+        \set guioptions-=T <Bar>
+        \set guioptions-=m <bar>
+    \else <Bar>
+        \set guioptions+=T <Bar>
+        \set guioptions+=m <Bar>
+    \endif<CR>
 
-" 设置状态栏显示方式
-set laststatus=2
-" 设置状态栏显示内容
+set autochdir
+set colorcolumn=81
+hi colorcolumn guibg=#444444
+
+" set mark column color
+hi! link SignColumn   LineNr
+hi! link ShowMarksHLl DiffAdd
+hi! link ShowMarksHLu DiffChange
+
+" status line
 set statusline=%t\ %1*%m%*\ %1*%r%*\ %2*%h%*%w%=%l%3*/%L(%p%%)%*,%c%V]\ [%b:0x%B]\ [%{&ft==''?'TEXT':toupper(&ft)},%{toupper(&ff)},%{toupper(&fenc!=''?&fenc:&enc)}%{&bomb?',BOM':''}%{&eol?'':',NOEOL'}]
 hi User1 guibg=red guifg=yellow
 hi User2 guibg=#008000 guifg=white
 hi User3 guibg=#C2BFA5 guifg=#999999
 
-"set statusline+= %{FileTime()}
+set laststatus=2   " Always show the status line - use 2 lines for the status bar
 
-"fu! FileTime()
-"let ext=tolower(expand("%:e"))
-"let fname=tolower(expand('%<'))
-"let filename=fname . '.' . ext
-"let msg=""
-"let msg=msg." ".strftime("(Modified %b,%d %y %H:%M:%S)",getftime(filename))
-"return msg
-"endf
+" del ^M
+nmap <leader>dm mmHmn:%s/<C-V><CR>//ge<CR>'nzt'm
 
-"fu! CurTime()
-"let ftime=""
-"let ftime=ftime." ".strftime("%b,%d %y %H:%M:%S")
-"return ftime
-"endf
+" ============================ specific file type ===========================
 
-" ------------------------------- Mappings ------------------------------ {{{
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
+
+autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
+function! AutoSetFileHead()
+    " .sh
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+    endif
+
+    " python
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "\# encoding: utf-8")
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
+
+autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+" ============================ key map ============================
 " Normal Mode, Visual Mode, and Select Mode,
 " use <Tab> and <Shift-Tab> to indent
 " @see http://c9s.blogspot.com/2007/10/vim-tips.html
@@ -283,10 +208,15 @@ hi User3 guibg=#C2BFA5 guifg=#999999
 vmap <tab> >gv
 vmap <s-tab> <gv
 
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+
 map <C-j> <C-W>j
 map <C-k> <C-W>k
-map <C-l> <C-W>l
 map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 map <C-kPlus> <C-w>+
 map <C-kMinus> <C-w>-
@@ -296,23 +226,65 @@ map <C-S-kMinus> <C-w>_
 map <C-c> "+y
 map <C-v> "+p
 
-" TODO: smart <Home>
+"nnoremap <F2> :set nu! nu?<CR>
+"nnoremap <F3> :set list! list?<CR>
+"nnoremap <F4> :set wrap! wrap?<CR>
+"set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
+                                "    paste mode, where you can paste mass data
+                                "    that won't be autoindented
+"au InsertLeave * set nopaste
+"nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
-function! RemoveTrailingWhitespace()
-    if &ft != "diff"
-        let b:curcol = col(".")
-        let b:curline = line(".")
-        silent! %s/\s\+$//
-        silent! %s/\(\s*\n\)\+\%$//
-        call cursor(b:curline, b:curcol)
-    endif
-endfunction
-autocmd BufWritePre * call RemoveTrailingWhitespace()
+" kj => Esc
+"inoremap kj <Esc>
 
-" 删除^M
-nmap <leader>dm mmHmn:%s/<C-V><CR>//ge<CR>'nzt'm
+" Quickly close the current window
+nnoremap <leader>q :q<CR>
+" Quickly save the current file
+nnoremap <leader>w :w<CR>
 
-" Remove trailing whitespace when writing a buffer, but not for diff files.
-autocmd BufWritePre * :%s/\s\+$//e
-autocmd BufWritePre * %s/^$\n\+\%$//ge
-au BufWritePre * exe 'sil! 1,' . min([line('$'), 20]) . 's/^\S\+\s\+Last modified: \zs.*/\=strftime("%y-%m-%d %H:%M:%S")/e'
+" select all
+map <Leader>sa ggVG"
+
+" remap U to <C-r> for easier redo
+nnoremap U <C-r>
+
+" Swap implementations of ` and ' jump to markers
+" By default, ' jumps to the marked line, ` jumps to the marked line and
+" column, so swap them
+nnoremap ' `
+nnoremap ` '
+
+" switch # *
+" nnoremap # *
+" nnoremap * #
+
+"Keep search pattern at the center of the screen."
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" remove highlight
+noremap <silent><leader>/ :nohls<CR>
+
+"Reselect visual block after indent/outdent.
+vnoremap < <gv
+vnoremap > >gv
+
+" y$ -> Y Make Y behave like other capitals
+map Y y$
+
+"Map ; to : and save a million keystrokes
+" ex mode commands made easy
+nnoremap ; :
+
+" save
+cmap w!! w !sudo tee >/dev/null %
+
+" command mode, ctrl-a to head， ctrl-e to tail
+cnoremap <C-j> <t_kd>
+cnoremap <C-k> <t_ku>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
