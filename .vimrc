@@ -247,7 +247,8 @@ nmap <leader>dm mmHmn:%s/<C-V><CR>//ge<CR>'nzt'm
 "return ftime
 "endf
 
-" ------------------------------- Mappings ------------------------------ {{{
+" ============================ Mappings ===========================
+
 " Normal Mode, Visual Mode, and Select Mode,
 " use <Tab> and <Shift-Tab> to indent
 " @see http://c9s.blogspot.com/2007/10/vim-tips.html
