@@ -19,12 +19,12 @@ cp ~/.vimrc ~/.vimrc_bak
 
 recommend
 ```
-curl https://raw.githubusercontent.com/gowiden/vimrc-Todd/master/vimrc > ~/.vimrc
+curl https://raw.githubusercontent.com/gowiden/vimrc/master/.vimrc > ~/.vimrc
 ```
 or  use git
 
 ```
-git clone https://github.com/gowiden/vimrc-Todd.git
+git clone https://github.com/gowiden/vimrc.git
 ln -s vimrc-Todd/vimrc ~/.vimrc
 ```
 
