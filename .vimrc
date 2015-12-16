@@ -1,4 +1,4 @@
-" Author: Auciou Yang(Todd)
+" Author: Forest Yang(Todd)
 " Page: http://about.me/vimer
 " Last_modify: 2012-08-08
 " Desc: simple vim config, without any plugins.
