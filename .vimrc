@@ -8,7 +8,7 @@
 let mapleader = ','
 let g:mapleader = ','
 
-" 语法高亮
+" syntax
 syntax on
 
 " history : how many lines of history VIM has to remember
@@ -26,7 +26,7 @@ syntax enable
 set nocompatible                " don't bother with vi compatibility
 set autoread                    " 文件修改之后自动载入。
 set shortmess=atI               " 启动的时候不显示那个援助索马里儿童的提示
-"set cm=blowfish
+set cm=blowfish
 
 set magic                       " For regular expressions turn magic on
 set title                       " change the terminal's title
@@ -35,13 +35,12 @@ set noswapfile                  " 关闭交换文件
 
 set novisualbell                " turn off visual bell
 set noerrorbells                " don't beep
-"set visualbell t_vb=            " turn off error beep/flash
-"set vb t_vb=                    " no beep or flash
+"set visualbell t_vb=           " turn off error beep/flash
 set t_vb=
 set tm=500
 
 " show location
-set nocursorcolumn                " 突出显示当前行等 不喜欢这种定位可注解
+set nocursorcolumn              " 突出显示当前行等 不喜欢这种定位可注解
 set cursorline                  " 突出显示当前行
 set gcr=a:block-blinkon0
 
@@ -51,7 +50,7 @@ set scrolloff=7                 " keep 3 lines when scrolling
 " show
 set ruler                       " show the current row and column
 set number                      " show line numbers
-set nowrap
+set wrap
 set showcmd                     " display incomplete commands
 set showmode                    " display current modes
 set showmatch                   " jump to matches when entering parentheses
@@ -89,8 +88,7 @@ set softtabstop=4               " insert mode tab and backspace use 4 spaces
 " fold
 set foldenable
 set foldmethod=syntax
-set foldmethod=indent
-set foldlevel=99
+set foldlevel=6
 set foldcolumn=0
 let g:FoldMethod = 0
 map <leader>zz :call ToggleFold()<cr>
@@ -110,8 +108,9 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set termencoding=utf-8
 set ffs=unix,dos,mac
 set helplang=cn
-set formatoptions+=m          "如遇Unicode值大于255的文本，不必等到空格再折行。
-set formatoptions+=B          "合并两行中文时，不在中间加空格：
+set formatoptions+=m      "如遇Unicode值大于255的文本，不必等到空格再折行。
+set formatoptions+=B      "合并两行中文时，不在中间加空格：
+set textwidth=80
 
 set fileformat=unix
 set fileformats=dos,unix,mac  " ffs=dos,unix
@@ -126,12 +125,11 @@ set wildmode=longest,list,full
 set wildignore=*.o,*~,*.pyc,*.class
 set nrformats=                " 00x增减数字时使用十进制
 
-set cm=blowfish               "设置Blowfish加密算法
-
 " others
 set backspace=indent,eol,start  " make that backspace key work the way it should
 set whichwrap+=<,>,h,l
-autocmd! bufwritepost ~/.vimrc source % " vimrc文件修改之后自动加载。 linux。
+
+autocmd! bufwritepost ~/.vimrc source % " vimrc文件修改之后自动加载。
 
 " if this not work ,make sure .viminfo is writable for you
 if has("autocmd")
@@ -155,7 +153,7 @@ function! RemoveTrailingWhitespace()
 endfunction
 autocmd BufWritePre * call RemoveTrailingWhitespace()
 
-" 删除^M
+" delete ^M
 nmap <leader>dm mmHmn:%s/<C-V><CR>//ge<CR>'nzt'm
 
 " Remove trailing whitespace when writing a buffer, but not for diff files.
@@ -163,16 +161,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufWritePre * %s/^$\n\+\%$//ge
 au BufWritePre * exe 'sil! 1,' . min([line('$'), 20]) . 's/^\S\+\s\+Last modified: \zs.*/\=strftime("%y-%m-%d %H:%M:%S")/e'
 
-" 自动换行
-" NOTE: this setting will change text source.
-set wrap
-set textwidth=80
-set fo+=m
-
-" 共享系统剪贴板（yank的时候同时存储到剪贴板中）
-set clipboard+=unnamed
-
-" =========================== theme and status line ============================
+" ======================= theme and status line =========================
 
 " theme
 set background=dark
@@ -214,11 +203,7 @@ hi User3 guibg=#C2BFA5 guifg=#999999
 "    map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 "endif
 
-" 选中一段文字并全文搜索这段文字
-vnoremap  *  y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
-vnoremap  #  y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
-
-" ============================== Mappings ===================================
+" ============================ Mappings ================================
 " Normal Mode, Visual Mode, and Select Mode,
 " use <Tab> and <Shift-Tab> to indent
 " @see http://c9s.blogspot.com/2007/10/vim-tips.html
@@ -254,7 +239,7 @@ function! RemoveTrailingWhitespace()
 endfunction
 autocmd BufWritePre * call RemoveTrailingWhitespace()
 
-" ============================ specific file type ===========================
+" ========================= specific file type ===========================
 
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
