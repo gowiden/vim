@@ -35,8 +35,9 @@ set noswapfile                  " 关闭交换文件
 
 set novisualbell                " turn off visual bell
 set noerrorbells                " don't beep
-set visualbell t_vb=            " turn off error beep/flash
-set vb t_vb=                    " no beep or flash
+"set visualbell t_vb=            " turn off error beep/flash
+"set vb t_vb=                    " no beep or flash
+set t_vb=
 set tm=500
 
 " show location
