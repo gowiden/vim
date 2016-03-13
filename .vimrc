@@ -165,8 +165,9 @@ au BufWritePre * exe 'sil! 1,' . min([line('$'), 20]) . 's/^\S\+\s\+Last modifie
 
 " 自动换行
 " NOTE: this setting will change text source.
-" set textwidth=80
-" set fo+=m
+set wrap
+set textwidth=80
+set fo+=m
 
 " 共享系统剪贴板（yank的时候同时存储到剪贴板中）
 set clipboard+=unnamed
