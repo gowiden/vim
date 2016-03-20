@@ -27,12 +27,10 @@ set nocompatible                " don't bother with vi compatibility
 set autoread                    " 文件修改之后自动载入。
 set shortmess=atI               " 启动的时候不显示那个援助索马里儿童的提示
 set cm=blowfish
-
 set magic                       " For regular expressions turn magic on
 set title                       " change the terminal's title
 set nobackup                    " do not keep a backup file
 set noswapfile                  " 关闭交换文件
-
 set novisualbell                " turn off visual bell
 set noerrorbells                " don't beep
 "set visualbell t_vb=           " turn off error beep/flash
@@ -63,6 +61,7 @@ set lines=30
 set winaltkeys=no               " 不用alt键访问菜单
 set nolinebreak                 " 禁用断行
 set t_ti= t_te=
+set t_Co=256
 
 " search
 set hlsearch                    " highlight searches
@@ -106,12 +105,10 @@ endfun
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set termencoding=utf-8
-set ffs=unix,dos,mac
 set helplang=cn
 set formatoptions+=m      "如遇Unicode值大于255的文本，不必等到空格再折行。
 set formatoptions+=B      "合并两行中文时，不在中间加空格：
 set textwidth=80
-
 set fileformat=unix
 set fileformats=dos,unix,mac  " ffs=dos,unix
 
@@ -185,10 +182,12 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
 \set guioptions+=m <Bar>
 
 set autochdir
-set colorcolumn=81
+set colorcolumn=80
+
 hi colorcolumn guibg=#444444
+"hi ColorColumn ctermbg=gray guibg=gray
 "syn match out80 /\%80v./ containedin=ALL
-hi out80 guifg=#333333 guibg=#ffffff
+"hi out80 guifg=#333333 guibg=#ffffff
 
 " status line
 set laststatus=2  " Always show the status line - use 2 lines for the status bar
