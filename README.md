@@ -24,8 +24,8 @@ curl https://raw.githubusercontent.com/gowiden/vim/master/vimrc > ~/.vimrc
 or  use git
 
 ```
-git clone https://github.com/gowiden/vimrc.git
-ln -s vimrc-Todd/vimrc ~/.vimrc
+git clone https://github.com/gowiden/vim.git
+ln -s vimrc/vimrc ~/.vimrc
 ```
 
 #### 3. Done, enjoy it
