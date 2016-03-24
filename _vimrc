@@ -59,7 +59,7 @@ set showmatch                   " jump to matches when entering parentheses
 set matchtime=2                 " tenths of a second to show the matching parenthesis
 set ambiwidth=double            " 对不明宽度字符的处理方式
 "set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
-set guifont=Fixedsys:h10:cGB2312
+"set guifont=Fixedsys:h10:cGB2312
 set guifont=YaHei\ Mono:h10:cGB2312
 set lz                          " 运行宏时不重绘屏幕
 set columns=90
