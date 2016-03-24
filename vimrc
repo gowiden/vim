@@ -4,6 +4,10 @@
 " Last_modify: 2012-02-02
 " Desc: simple configures, without plugins.
 
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
 " leader
 let mapleader = ','
 let g:mapleader = ','
@@ -55,9 +59,11 @@ set showmatch                   " jump to matches when entering parentheses
 set matchtime=2                 " tenths of a second to show the matching parenthesis
 set ambiwidth=double            " 对不明宽度字符的处理方式
 set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
+"set guifont=Fixedsys:h10:cGB2312
+"set guifont=YaHei\ Mono:h10:cGB2312
 set lz                          " 运行宏时不重绘屏幕
 set columns=90
-set lines=30
+set lines=28
 set winaltkeys=no               " 不用alt键访问菜单
 set nolinebreak                 " 禁用断行
 set t_ti= t_te=
@@ -68,6 +74,7 @@ set hlsearch                    " highlight searches
 set incsearch                   " do incremental searching, search as you type
 set ignorecase                  " ignore case when searching
 set smartcase                   " no ignorecase if Uppercase char present
+
 " 选中一段文字并全文搜索这段文字
 vnoremap  *  y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap  #  y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
@@ -126,7 +133,9 @@ set nrformats=                " 00x增减数字时使用十进制
 set backspace=indent,eol,start  " make that backspace key work the way it should
 set whichwrap+=<,>,h,l
 
-autocmd! bufwritepost ~/.vimrc source % " vimrc文件修改之后自动加载。
+" Vimrc Auto
+"autocmd! bufwritepost _vimrc source %
+autocmd! bufwritepost .vimrc source %
 
 " if this not work ,make sure .viminfo is writable for you
 if has("autocmd")
