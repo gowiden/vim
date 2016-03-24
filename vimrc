@@ -16,7 +16,7 @@ let g:mapleader = ','
 syntax on
 
 " history : how many lines of history VIM has to remember
-set history=2000
+set history=500
 
 " filetype
 filetype on
@@ -28,13 +28,13 @@ syntax enable
 
 " base
 set nocompatible                " don't bother with vi compatibility
-set autoread                    " 文件修改之后自动载入。
-set shortmess=atI               " 启动的时候不显示那个援助索马里儿童的提示
+set autoread
+set shortmess=atI
 set cm=blowfish
 set magic                       " For regular expressions turn magic on
 set title                       " change the terminal's title
 set nobackup                    " do not keep a backup file
-set noswapfile                  " 关闭交换文件
+set noswapfile
 set novisualbell                " turn off visual bell
 set noerrorbells                " don't beep
 "set visualbell t_vb=           " turn off error beep/flash
@@ -42,8 +42,8 @@ set t_vb=
 set tm=500
 
 " show location
-set nocursorcolumn              " 突出显示当前行等 不喜欢这种定位可注解
-set cursorline                  " 突出显示当前行
+set nocursorcolumn
+set cursorline
 set gcr=a:block-blinkon0
 
 " movement
@@ -57,15 +57,14 @@ set showcmd                     " display incomplete commands
 set showmode                    " display current modes
 set showmatch                   " jump to matches when entering parentheses
 set matchtime=2                 " tenths of a second to show the matching parenthesis
-set ambiwidth=double            " 对不明宽度字符的处理方式
+set ambiwidth=double
 set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
-"set guifont=Fixedsys:h10:cGB2312
 "set guifont=YaHei\ Mono:h10:cGB2312
-set lz                          " 运行宏时不重绘屏幕
+set lz
 set columns=90
-set lines=28
-set winaltkeys=no               " 不用alt键访问菜单
-set nolinebreak                 " 禁用断行
+set lines=30
+set winaltkeys=no
+set nolinebreak
 set t_ti= t_te=
 set t_Co=256
 
@@ -75,7 +74,6 @@ set incsearch                   " do incremental searching, search as you type
 set ignorecase                  " ignore case when searching
 set smartcase                   " no ignorecase if Uppercase char present
 
-" 选中一段文字并全文搜索这段文字
 vnoremap  *  y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap  #  y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 
@@ -113,8 +111,8 @@ set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set termencoding=utf-8
 set helplang=cn
-set formatoptions+=m      "如遇Unicode值大于255的文本，不必等到空格再折行。
-set formatoptions+=B      "合并两行中文时，不在中间加空格：
+set formatoptions+=m
+set formatoptions+=B
 set textwidth=80
 set fileformat=unix
 set fileformats=dos,unix,mac  " ffs=dos,unix
@@ -122,15 +120,14 @@ set fileformats=dos,unix,mac  " ffs=dos,unix
 " select & complete
 set selection=inclusive
 set selectmode=mouse,key
-
 set completeopt=longest,menu
 set wildmenu                  " show a navigable menu for tab completion"
 set wildmode=longest,list,full
 set wildignore=*.o,*~,*.pyc,*.class
-set nrformats=                " 00x增减数字时使用十进制
+set nrformats=
 
 " others
-set backspace=indent,eol,start  " make that backspace key work the way it should
+set backspace=indent,eol,start " make that backspace key work the way it should
 set whichwrap+=<,>,h,l
 
 " Vimrc Auto
@@ -173,12 +170,7 @@ au BufWritePre * exe 'sil! 1,' . min([line('$'), 20]) . 's/^\S\+\s\+Last modifie
 set background=dark
 colorscheme desert
 
-" set mark column color
-hi! link SignColumn   LineNr
-hi! link ShowMarksHLl DiffAdd
-hi! link ShowMarksHLu DiffChange
-
-" @see http://liyanrui.is-programmer.com/articles/1791/gvim-menu-and-toolbar-toggle.html
+" http://liyanrui.is-programmer.com/articles/1791/gvim-menu-and-toolbar-toggle.html
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
@@ -195,21 +187,13 @@ set colorcolumn=80
 
 hi colorcolumn guibg=#444444
 "hi ColorColumn ctermbg=gray guibg=gray
-"syn match out80 /\%80v./ containedin=ALL
-"hi out80 guifg=#333333 guibg=#ffffff
 
 " status line
-set laststatus=2  " Always show the status line - use 2 lines for the status bar
-" 设置状态栏显示内容
+set laststatus=2 " Always show the status line - use 2 lines for the status bar
 set statusline=%t\ %1*%m%*\ %1*%r%*\ %2*%h%*%w%=%l%3*/%L(%p%%)%*,%c%V]\ [%b:0x%B]\ [%{&ft==''?'TEXT':toupper(&ft)},%{toupper(&ff)},%{toupper(&fenc!=''?&fenc:&enc)}%{&bomb?',BOM':''}%{&eol?'':',NOEOL'}]
 hi User1 guibg=red guifg=yellow
 hi User2 guibg=#008000 guifg=white
 hi User3 guibg=#C2BFA5 guifg=#999999
-
-" F11 maximize window
-"if has("gui_running") && has("win32")
-"    map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-"endif
 
 " ============================ Mappings ================================
 " Normal Mode, Visual Mode, and Select Mode,
@@ -220,7 +204,6 @@ hi User3 guibg=#C2BFA5 guifg=#999999
 vmap <tab> >gv
 vmap <s-tab> <gv
 
-" 窗口间的移动设置
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
