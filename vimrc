@@ -16,7 +16,7 @@ let g:mapleader = ','
 syntax on
 
 " history : how many lines of history VIM has to remember
-set history=500
+set history=1000
 
 " filetype
 filetype on
@@ -37,8 +37,7 @@ set nobackup                    " do not keep a backup file
 set noswapfile
 set novisualbell                " turn off visual bell
 set noerrorbells                " don't beep
-"set visualbell t_vb=           " turn off error beep/flash
-set t_vb=
+set t_vb=                       " turn off error beep/flash
 set tm=500
 
 " show location
@@ -48,25 +47,6 @@ set gcr=a:block-blinkon0
 
 " movement
 set scrolloff=7                 " keep 3 lines when scrolling
-
-" show
-set ruler                       " show the current row and column
-set number                      " show line numbers
-set wrap
-set showcmd                     " display incomplete commands
-set showmode                    " display current modes
-set showmatch                   " jump to matches when entering parentheses
-set matchtime=2                 " tenths of a second to show the matching parenthesis
-set ambiwidth=double
-set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
-"set guifont=YaHei\ Mono:h10:cGB2312
-set lz
-set columns=90
-set lines=30
-set winaltkeys=no
-set nolinebreak
-set t_ti= t_te=
-set t_Co=256
 
 " search
 set hlsearch                    " highlight searches
@@ -124,24 +104,11 @@ set completeopt=longest,menu
 set wildmenu                  " show a navigable menu for tab completion"
 set wildmode=longest,list,full
 set wildignore=*.o,*~,*.pyc,*.class
-set nrformats=
+set nrformats=                "
 
 " others
-set backspace=indent,eol,start " make that backspace key work the way it should
+set backspace=indent,eol,start  " make that backspace key work the way it should
 set whichwrap+=<,>,h,l
-
-" Vimrc Auto
-"autocmd! bufwritepost _vimrc source %
-autocmd! bufwritepost .vimrc source %
-
-" if this not work ,make sure .viminfo is writable for you
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-" NOT SUPPORT
-" Enable basic mouse behavior such as resizing buffers.
-set mouse-=a
 
 " TODO: smart <Home>
 
@@ -156,15 +123,23 @@ function! RemoveTrailingWhitespace()
 endfunction
 autocmd BufWritePre * call RemoveTrailingWhitespace()
 
-" delete ^M
-nmap <leader>dm mmHmn:%s/<C-V><CR>//ge<CR>'nzt'm
-
 " Remove trailing whitespace when writing a buffer, but not for diff files.
 autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufWritePre * %s/^$\n\+\%$//ge
 au BufWritePre * exe 'sil! 1,' . min([line('$'), 20]) . 's/^\S\+\s\+Last modified: \zs.*/\=strftime("%y-%m-%d %H:%M:%S")/e'
 
-" ======================= theme and status line =========================
+" Vimrc Auto
+"autocmd! bufwritepost _vimrc source %
+autocmd! bufwritepost .vimrc source %
+
+" if this not work ,make sure .viminfo is writable for you
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" NOT SUPPORT
+" Enable basic mouse behavior such as resizing buffers.
+set mouse-=a
 
 " theme
 set background=dark
@@ -182,14 +157,31 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
 \set guioptions+=T <Bar>
 \set guioptions+=m <Bar>
 
+" show
+set ruler                       " show the current row and column
+set number                      " show line numbers
+set wrap
+set showcmd                     " display incomplete commands
+set showmode                    " display current modes
+set showmatch                   " jump to matches when entering parentheses
+set matchtime=2                 " tenths of a second to show the matching parenthesis
+set ambiwidth=double
+set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
+"set guifont=YaHei\ Mono:h10
+set lz
+set columns=90
+set lines=30
+set winaltkeys=no
+set nolinebreak
+set t_ti= t_te=
+set t_Co=256
 set autochdir
 set colorcolumn=80
-
 hi colorcolumn guibg=#444444
 "hi ColorColumn ctermbg=gray guibg=gray
 
 " status line
-set laststatus=2 " Always show the status line - use 2 lines for the status bar
+set laststatus=2  " Always show the status line - use 2 lines for the status bar
 set statusline=%t\ %1*%m%*\ %1*%r%*\ %2*%h%*%w%=%l%3*/%L(%p%%)%*,%c%V]\ [%b:0x%B]\ [%{&ft==''?'TEXT':toupper(&ft)},%{toupper(&ff)},%{toupper(&fenc!=''?&fenc:&enc)}%{&bomb?',BOM':''}%{&eol?'':',NOEOL'}]
 hi User1 guibg=red guifg=yellow
 hi User2 guibg=#008000 guifg=white
@@ -230,6 +222,9 @@ function! RemoveTrailingWhitespace()
 endfunction
 autocmd BufWritePre * call RemoveTrailingWhitespace()
 
+map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+imap <F11> :call libcallnr(“gvimfullscreen.dll”, “ToggleFullScreen”, 0)<CR>
+
 " ========================= specific file type ===========================
 
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
@@ -242,7 +237,6 @@ function! AutoSetFileHead()
     if &filetype == 'sh'
         call setline(1, "\#!/bin/bash")
     endif
-
     " python
     if &filetype == 'python'
         call setline(1, "\#!/usr/bin/env python")
