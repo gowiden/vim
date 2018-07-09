@@ -39,6 +39,9 @@ set novisualbell                " turn off visual bell
 set noerrorbells                " don't beep
 set t_vb=                       " turn off error beep/flash
 set tm=500
+set confirm
+set iskeyword+=_,$,@,%,#,-
+set smartindent
 
 " show location
 set nocursorcolumn
@@ -88,7 +91,7 @@ endfun
 
 " encoding
 set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set fileencodings=utf-8,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set termencoding=utf-8
 set helplang=cn
 set formatoptions+=m
@@ -98,7 +101,8 @@ set fileformat=unix
 set fileformats=dos,unix,mac  " ffs=dos,unix
 
 " select & complete
-set selection=inclusive
+"set selection=inclusive
+set selection=exclusive
 set selectmode=mouse,key
 set completeopt=longest,menu
 set wildmenu                  " show a navigable menu for tab completion"
